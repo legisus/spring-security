@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <style>
+        h2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logout-message {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login, div, p {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        div, p {
+            font-weight: bold;
+        }
+
+        .btn-login {
+            margin-right: 10px;
+        }
+
+
+        .fade-error {
+            animation: fadeOut 4s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>LogIn Page</h2>
+<br>
+<p class="logout-message" th:if="${param.logout}">You have been logged out</p>
+<br>
+
+<form class="login" th:action="@{/login}" method="post">
+    <div class="form-group text-left">
+        <label class="control-label" for="email">Email:</label>
+        <input type="text" class="form-control" id="email" name="email"/>
+    </div>
+
+    <div class="form-group text-left">
+        <label class="control-label" for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password"/>
+    </div>
+
+    <div class="btn-login-container text-right">
+        <input type="submit" class="btn btn-primary btn-login" value="Log In"/>
+    </div>
+</form>
+
+<br>
+<div class="fade-error" style="color: red;" th:if="${param.error}">Email or password is incorrect.</div>
+<p>Don't have an account? <a style="margin-left: 45px;" th:href="@{/register}">Register now!</a></p>
+
+</body>
+</html>
